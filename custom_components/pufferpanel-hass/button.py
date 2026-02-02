@@ -65,9 +65,10 @@ class PufferPanelButton(ButtonEntity):
 
     async def async_press(self) -> None:
         """Handle the button press."""
-        await self.coordinator.client.send_server_action(
+        success = await self.coordinator.client.send_server_action(
             self.server_id, 
             self.action_id
         )
-        
-        await self.coordinator.async_request_refresh()
+        if success:
+            await self.coordinator.async_request_refresh()
+        return None
