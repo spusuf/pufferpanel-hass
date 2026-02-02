@@ -36,4 +36,15 @@
             }
         }
     }
+    "entity": {
+        "button": {
+            "start": { "name": "Start" },
+            "stop": { "name": "Stop" },
+            "restart": { "name": "Restart" },
+            "kill": { "name": "Kill" }.
+            "install": { "name": "Install" },
+            "reload": { "name": "Reload" }
+            
+        }
+    }
 }
