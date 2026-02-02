@@ -1,5 +1,5 @@
 {
-    "domain": "pufferpanel-hass",
+    "domain": "pufferpanel",
     "name": "PufferPanel",
     "codeowners": [
         "@spusuf"
