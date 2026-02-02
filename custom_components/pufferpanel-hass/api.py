@@ -100,18 +100,15 @@ class PufferPanelClient:
         }
         
         try:
-            async with self.session.post(url, json=json_data, headers=headers) as response:
-                if response.status == 204 or response.status == 200:
-                    try:
-                        return await response.json()
-                    except:
-                        return {}
+            async with self.session.post(url, json=json_data, headers=headers, timeout=10) as response:
+                if response.status in [200, 202, 204]:
+                    return True
                 
                 _LOGGER.error("PufferPanel POST %s failed: %s", path, response.status)
-                return None
+                return False
         except Exception as e:
             _LOGGER.error("PufferPanel connection error during POST: %s", e)
-            return None
+            return {}
 
     async def send_server_action(self, server_id, action):
         return await self._post(f"/servers/{server_id}/{action}", json_data={})

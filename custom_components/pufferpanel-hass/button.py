@@ -43,9 +43,9 @@ class PufferPanelButton(ButtonEntity):
         """Initialize the button."""
         self.coordinator = coordinator
         self.server_id = server_id
-        self.action_id = action_id
+        self.action_id = str(action_id)
         
-        self._attr_name = action_name
+        self._attr_name = (action_name or action_id or "Action").capitalize()
         self._attr_icon = icon
         self._attr_unique_id = f"{server_id}_{action_id}"
         
@@ -65,9 +65,10 @@ class PufferPanelButton(ButtonEntity):
 
     async def async_press(self) -> None:
         """Handle the button press."""
-        await self.coordinator.client.send_server_action(
+        success = await self.coordinator.client.send_server_action(
             self.server_id, 
             self.action_id
         )
-        
-        await self.coordinator.async_request_refresh()
+        if success:
+            await self.coordinator.async_request_refresh()
+        return None
