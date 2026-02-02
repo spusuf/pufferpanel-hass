@@ -304,7 +304,10 @@ class MinecraftModLauncher(PufferPanelBaseEntity, SensorEntity):
         data_inner = data_top.get("data", {})
         mod_info = data_inner.get("modlauncher", {})
         raw_value = mod_info.get("value")
-        
+
+        if raw_value is None:
+            return "Unknown"
+
         display_value = {
             "paper": "Paper",
             "fabric": "Fabric",
