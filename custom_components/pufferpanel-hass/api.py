@@ -100,16 +100,12 @@ class PufferPanelClient:
         }
         
         try:
-            async with self.session.post(url, json=json_data, headers=headers) as response:
-                if response.status in [200, 204]:
-                    try:
-                        import json
-                        return json.loads(data) if data else {}
-                    except:
-                        return {}
+            async with self.session.post(url, json=json_data, headers=headers, timeout=10) as response:
+                if response.status in [200, 202, 204]:
+                    return True
                 
                 _LOGGER.error("PufferPanel POST %s failed: %s", path, response.status)
-                return {}
+                return False
         except Exception as e:
             _LOGGER.error("PufferPanel connection error during POST: %s", e)
             return {}
