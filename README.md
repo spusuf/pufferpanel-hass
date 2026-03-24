@@ -37,7 +37,8 @@ Provides the following for Minecraft servers:
     5. Click Create new OAuth2 Client
     6. Name it HomeAssistant (or anything you want)
     7. Copy BOTH Client ID and Client Secret (you can see Client ID again but Secret will never be shown again)
-2. Install the integration
+2. Add the integration to your list using HACS: [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=spusuf&repository=pufferpanel-hass)
+3. Install and configure the integration in the home assistant settings
     1. Use the IP of your pufferpanel machine's network interface
     2. Use the Port of pufferpanel (it is 8080 by default)
     3. Use the Client ID you got from pufferpanel
